@@ -1,7 +1,7 @@
-void shuffle(u32* v, u32 len) {
-    u32 j = 0;
-    u32 temp = 0;
-    for (u32 i = len - 1; i > 0; i -= 1) {
+void shuffle(i64* v, i64 len) {
+    i64 j = 0;
+    i64 temp = 0;
+    for (i64 i = len - 1; i > 0; i -= 1) {
         j = arc4random_uniform(i+1);
         temp = v[i];
         v[i] = v[j];
@@ -9,15 +9,15 @@ void shuffle(u32* v, u32 len) {
     }
 }
 
-void check_text_equality(const u32 u[T], const u32 v[T] ) {
-	for (u32 i = 0; i < T; i++) if (u[i] != v[i]) printf("inequality found at symbol %d \n",i);
+void check_text_equality(const i64 u[T], const i64 v[T] ) {
+	for (i64 i = 0; i < T; i++) if (u[i] != v[i]) printf("inequality found at symbol %lld \n",i);
 }
 
-void record_difference(u32* x, const u32* y, const u32* z) {
-    for (u32 i = 0; i < T; i++) x[i] = (y[i] != z[i]);
+void record_difference(i64* x, const i64* y, const i64* z) {
+    for (i64 i = 0; i < T; i++) x[i] = (y[i] != z[i]);
 }
 
-void copy_text(u32 d[T] , u32 s[T]) {
-	for (u32 i = 0; i < T; i++) d[i] = s[i];
+void copy_text(i64 d[T] , i64 s[T]) {
+	for (i64 i = 0; i < T; i++) d[i] = s[i];
 }
 

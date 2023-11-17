@@ -1,13 +1,13 @@
 void encoding_demo(){
-	u32 k[N];
-	u32 m[N];
-    u32 f[N][N] = {0};
-	u32 g[N][N] = {0};
-	u32 p[T];//plain
-	u32 c[T];//cipher
-	u32 d[T];//decode
-	u32 e[T];//diff vector
-	u32 hue = 155;
+	i64 k[N];
+	i64 m[N];
+    i64 f[N][N] = {0};
+	i64 g[N][N] = {0};
+	i64 p[T];//plain
+	i64 c[T];//cipher
+	i64 d[T];//decode
+	i64 e[T];//diff vector
+	i64 hue = 155;
 	cls();
 	randomize_key(k);
 
@@ -24,7 +24,7 @@ void encoding_demo(){
 	printf("\n\n");
 	print_key(f);
 
-	for (u32 i = 0; i < T/2; i++) {
+	for (i64 i = 0; i < T/2; i++) {
 		randomize_text(p);
 		copy_key(m,k);
 		//print_little_key(m);printf("\n");
