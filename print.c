@@ -1,6 +1,9 @@
 void rgb(int r, int g, int b) {
     printf("\x1b[38;2;%d;%d;%dm",r,g,b);
 }
+void gray(int h) {
+    rgb(h,h,h);
+}
 void cls() {
     printf( "\x1b[2J");
 }
@@ -22,21 +25,56 @@ void cursor_to(int r, int c) {
 }
 
 void print_symbol(u32 i) {
+    //gray(arc4random_uniform(255));
+    //rgb(arc4random_uniform(255),arc4random_uniform(255),arc4random_uniform(255));
+    //rgb(0,arc4random_uniform(155),0);
     switch (i) {
-        case 0 : printf("O");break;
-        case 1 : printf("|");break;
-        case 2 : printf("2");break;
+        case 0 : gray(arc4random_uniform(85));reverse_text();printf("O");stop_reverse_text();break;
+        case 1 : gray(arc4random_uniform(175));printf("|");break;
+        case 2 : gray(arc4random_uniform(15));printf("\u2588");break; //u2594
         case 3 : printf("3");break;
     }
 }
 void print_key(const u32 k[N][N]) {
 	for (u32 i = 0; i <= N/2 ; i++) {
 		for (u32 j = 0; j < N; j++) {
-            if (j == center ) rgb(255,0,0);
+            //if (j == center && (i == N/2 || i == 0) )  rgb(255,0,0);
             if (j  <  i) printf("  ");
             if (j  >=  N - i ) printf("  ");
             if (i <= j && j < N - i) {print_symbol(k[i][j]); printf(" ");}
-            if (j == center ) rgb(255,255,255);
+            //if (j == center && (i == N/2 || i == 0) ) rgb(255,255,255);
+        }
+		printf("\n");
+	}
+    printf("\n");
+}
+void print_pyramid(const u32 k[N][N]) {
+	//for (u32 i = 0; i <= N/2 ; i++) {
+    for (int i = N/2; i > -1   ; i-- ) {
+		for (u32 j = 0; j < N; j++) {
+            cursor_to(15 - i, 5 + 2*j);
+            //if (j == center && (i == N/2 ) )  rgb(255,0,0);
+            //print_symbol(k[i][j]); printf(" ");
+            if (j  <  i) printf("  ");
+            if (j  >=  N - i ) printf("  ");
+            if (i <= j && j < N - i) {print_symbol(k[i][j]); printf(" ");}
+            //if (j == center && (i == N/2 ) ) rgb(255,255,255);
+        }
+		printf("\n");
+	}
+    printf("\n");
+}
+void print_pyramid_tight(const u32 k[N][N]) {
+	//for (u32 i = 0; i <= N/2 ; i++) {
+    for (int i = N/2; i > -1   ; i-- ) {
+		for (u32 j = 0; j < N; j++) {
+            cursor_to(15 - i, 5 + j);
+            //if (j == center && (i == N/2 ) )  rgb(255,0,0);
+            //print_symbol(k[i][j]); printf(" ");
+            if (j  <  i) printf(" ");
+            if (j  >=  N - i ) printf(" ");
+            if (i <= j && j < N - i) {print_symbol(k[i][j]); printf("");}
+            //if (j == center && (i == N/2 ) ) rgb(255,255,255);
         }
 		printf("\n");
 	}

@@ -8,6 +8,7 @@ void encoding_demo(){
 	u32 d[T];//decode
 	u32 e[T];//diff vector
 	u32 hue = 155;
+	cls();
 	randomize_key(k);
 
     rgb(255,255,255);
@@ -32,9 +33,9 @@ void encoding_demo(){
 		//print_little_key(m);printf("\n");
 		//decode(d,c,f,m);
 		copy_key(m,k);
-		encrypt(c,p,f,m);
+		cone_encrypt(c,p,f,m);
 		copy_key(m,k);
-        decrypt(d,c,f,m);
+        cone_decrypt(d,c,f,m);
 		check_text_equality(d,p);
 		record_difference(e,p,c);
 		rgb(255,255,255);printf("f(");rgb(255,0,0);print_text(p);rgb(255,255,255);
